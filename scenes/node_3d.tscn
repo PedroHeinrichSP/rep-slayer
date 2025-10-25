@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bmhnghjtmi1e1"]
+[gd_scene load_steps=13 format=3 uid="uid://bmhnghjtmi1e1"]
 
+[ext_resource type="Texture2D" uid="uid://ngm5gsd4c0sr" path="res://base/necoshuv.png" id="1_ns6u7"]
 [ext_resource type="Script" uid="uid://dl5hdxsi1wicb" path="res://scripts/tps_controller.gd" id="1_tyffc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_20vo2"]
@@ -14,11 +15,14 @@ background_mode = 2
 sky = SubResource("Sky_tyffc")
 tonemap_mode = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t4e2"]
+albedo_texture = ExtResource("1_ns6u7")
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_5t4e2"]
-size = Vector2(100, 100)
+size = Vector2(1000, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvgsr"]
-size = Vector3(100, 0.05, 100)
+size = Vector3(1000, 0.05, 1000)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oqwcg"]
 
@@ -26,6 +30,10 @@ size = Vector3(100, 0.05, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tyffc"]
 size = Vector3(0.625, 0.22, 0.6)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ns6u7"]
+radius = 0.165
+height = 1.06
 
 [node name="Node3D" type="Node3D"]
 
@@ -39,6 +47,8 @@ shadow_enabled = true
 [node name="floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00995183, 0.01428175, -0.00399065)
+material_override = SubResource("StandardMaterial3D_5t4e2")
 mesh = SubResource("PlaneMesh_5t4e2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
@@ -55,8 +65,12 @@ mesh = SubResource("CapsuleMesh_oqwcg")
 shape = SubResource("CapsuleShape3D_a6664")
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8953539, 0.71829796, 3.5562847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8953539, 0.60968184, 1.3226476)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5725603, -0.25)
 mesh = SubResource("BoxMesh_tyffc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46960175, 0, 0)
+mesh = SubResource("CapsuleMesh_ns6u7")
