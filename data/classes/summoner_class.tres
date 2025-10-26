@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="PlayerClassData" load_steps=16 format=3 uid="uid://cwo2ktt026k0a"]
+
+[ext_resource type="Script" uid="uid://tt3wqxq7artd" path="res://scripts/player_class_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://ddg1j5b338s78" path="res://scripts/player_ability.gd" id="2"]
+[ext_resource type="Script" uid="uid://ihs53dw3ol2k" path="res://scripts/player_ability_slot.gd" id="3"]
+
+[sub_resource type="Resource" id="Ability_summoner_primary_bolt"]
+resource_name = "Spirit Bolt"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Spirit Bolt"
+description = "Command a lingering spirit shard that empowers the next summon."
+cooldown = 3.0
+method = "use_summoner_primary"
+variant_id = "spirit_bolt"
+
+[sub_resource type="Resource" id="Ability_summoner_primary_chain"]
+resource_name = "Spectral Chain"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Spectral Chain"
+description = "Lash targets with binding spirits that spread debuffs."
+cooldown = 4.0
+method = "use_summoner_primary_spectral_chain"
+variant_id = "spectral_chain"
+
+[sub_resource type="Resource" id="Slot_summoner_primary"]
+resource_name = "Summoner Primary"
+script = ExtResource("3")
+action_name = "ability_primary"
+slot_display_name = "Primary"
+description = "Core spectral strikes."
+abilities = Array[ExtResource("2")]([SubResource("Ability_summoner_primary_bolt"), SubResource("Ability_summoner_primary_chain")])
+
+[sub_resource type="Resource" id="Ability_summoner_secondary_acolyte"]
+resource_name = "Summon Acolyte"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Summon Acolyte"
+description = "Call forth a temporary construct to harry foes."
+cooldown = 15.0
+method = "use_summoner_secondary"
+variant_id = "summon_acolyte"
+
+[sub_resource type="Resource" id="Ability_summoner_secondary_totem"]
+resource_name = "Obsidian Totem"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Obsidian Totem"
+description = "Anchor a totem that siphons enemy strength and fortifies summons."
+cooldown = 18.0
+method = "use_summoner_secondary_obsidian_totem"
+variant_id = "obsidian_totem"
+
+[sub_resource type="Resource" id="Slot_summoner_secondary"]
+resource_name = "Summoner Secondary"
+script = ExtResource("3")
+action_name = "ability_secondary"
+slot_display_name = "Secondary"
+description = "Summon reinforcements."
+abilities = Array[ExtResource("2")]([SubResource("Ability_summoner_secondary_acolyte"), SubResource("Ability_summoner_secondary_totem")])
+
+[sub_resource type="Resource" id="Ability_summoner_utility_wave"]
+resource_name = "Commanding Wave"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Commanding Wave"
+description = "Issue a spectral command that buffs allied summons."
+cooldown = 18.0
+method = "use_summoner_utility"
+variant_id = "commanding_wave"
+
+[sub_resource type="Resource" id="Ability_summoner_utility_sigil"]
+resource_name = "Void Sigil"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Void Sigil"
+description = "Place a lingering sigil that slows foes and charges your summons."
+cooldown = 20.0
+method = "use_summoner_utility_void_sigil"
+variant_id = "void_sigil"
+
+[sub_resource type="Resource" id="Slot_summoner_utility"]
+resource_name = "Summoner Utility"
+script = ExtResource("3")
+action_name = "ability_utility"
+slot_display_name = "Utility"
+description = "Battlefield control."
+abilities = Array[ExtResource("2")]([SubResource("Ability_summoner_utility_wave"), SubResource("Ability_summoner_utility_sigil")])
+
+[sub_resource type="Resource" id="Ability_summoner_special_obelisk"]
+resource_name = "Obelisk Rite"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Obelisk Rite"
+description = "Anchor a spectral obelisk that radiates pressure."
+cooldown = 32.0
+method = "use_summoner_special"
+variant_id = "obelisk_rite"
+
+[sub_resource type="Resource" id="Ability_summoner_special_rat"]
+resource_name = "Rat Beam"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Rat Beam"
+description = "Channel a loyal vermin construct to fire a focused energy beam."
+cooldown = 34.0
+method = "use_summoner_special_rat_beam"
+variant_id = "rat_beam"
+
+[sub_resource type="Resource" id="Slot_summoner_special"]
+resource_name = "Summoner Special"
+script = ExtResource("3")
+action_name = "ability_special"
+slot_display_name = "Special"
+description = "Rites and manifestations."
+abilities = Array[ExtResource("2")]([SubResource("Ability_summoner_special_obelisk"), SubResource("Ability_summoner_special_rat")])
+
+[resource]
+script = ExtResource("1")
+id = "summoner"
+display_name = "The Mechanist"
+description = "Field tactician that leverages conjured allies and crowd control."
+passive_display_name = "Soul Bond"
+passive_description = "Linked spirits feed power back to you as your summons persist."
+passive_method = "passive_summoner_bond"
+max_health = 125.0
+move_speed_multiplier = 0.95
+ability_slots = Array[Resource]([SubResource("Slot_summoner_primary"), SubResource("Slot_summoner_secondary"), SubResource("Slot_summoner_utility"), SubResource("Slot_summoner_special")])

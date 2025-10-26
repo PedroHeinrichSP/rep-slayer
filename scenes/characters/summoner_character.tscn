@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgh7hy5cschf1"]
+
+[ext_resource type="PackedScene" path="res://scenes/characters/base_character.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/characters/summoner_character.gd" id="2"]
+
+[sub_resource type="ConeMesh" id="1"]
+bottom_radius = 0.6
+top_radius = 0.05
+height = 2.0
+radial_segments = 16
+
+[node name="SummonerCharacter" instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="MeshInstance3D" parent="."]
+mesh = SubResource("1")
