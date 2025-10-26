@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://by8o06wlsu2m4"]
+
+[ext_resource type="Script" uid="uid://dl5hdxsi1wicb" path="res://scripts/tps_controller.gd" id="1"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="2"]
+height = 1.8
+
+[node name="BaseCharacter" type="CharacterBody3D"]
+script = ExtResource("1")
+min_pitch = -0.737
+camera_pivot_offset = Vector3(0.94, 0.59, 5.415)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.216, 0.959, 5.267)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4698094, 0)
+mesh = SubResource("2")

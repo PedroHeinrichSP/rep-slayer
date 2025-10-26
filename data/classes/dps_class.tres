@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="PlayerClassData" load_steps=16 format=3 uid="uid://iv4ighmicy67"]
+
+[ext_resource type="Script" uid="uid://tt3wqxq7artd" path="res://scripts/player_class_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://ddg1j5b338s78" path="res://scripts/player_ability.gd" id="2"]
+[ext_resource type="Script" uid="uid://ihs53dw3ol2k" path="res://scripts/player_ability_slot.gd" id="3"]
+
+[sub_resource type="Resource" id="Ability_dps_primary_reap"]
+resource_name = "Reap & Fear"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Reap & Fear"
+description = "Crescent projectile that devastates in a wide arc."
+cooldown = 3.0
+method = "use_dps_primary"
+variant_id = "reap_fear"
+
+[sub_resource type="Resource" id="Ability_dps_primary_arc"]
+resource_name = "Arc Burst"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Arc Burst"
+description = "Fire a piercing bolt that ramps damage with distance."
+cooldown = 4.0
+method = "use_dps_primary_arc_burst"
+variant_id = "arc_burst"
+
+[sub_resource type="Resource" id="Slot_dps_primary"]
+resource_name = "DPS Primary"
+script = ExtResource("3")
+action_name = "ability_primary"
+slot_display_name = "Primary"
+description = "Signature damage pattern."
+abilities = Array[ExtResource("2")]([SubResource("Ability_dps_primary_reap"), SubResource("Ability_dps_primary_arc")])
+
+[sub_resource type="Resource" id="Ability_dps_secondary_pull"]
+resource_name = "Pull of Arrxvals"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Pull of Arrxvals"
+description = "Evoke a clone that draws enemy fire before detonating."
+cooldown = 10.0
+method = "use_dps_secondary"
+variant_id = "pull_arrxvals"
+
+[sub_resource type="Resource" id="Ability_dps_secondary_shatter"]
+resource_name = "Glass Shatter"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Glass Shatter"
+description = "Fracture your overclocked core, spraying shards that bleed foes."
+cooldown = 12.0
+method = "use_dps_secondary_glass_shatter"
+variant_id = "glass_shatter"
+
+[sub_resource type="Resource" id="Slot_dps_secondary"]
+resource_name = "DPS Secondary"
+script = ExtResource("3")
+action_name = "ability_secondary"
+slot_display_name = "Secondary"
+description = "Burst or crowd tools."
+abilities = Array[ExtResource("2")]([SubResource("Ability_dps_secondary_pull"), SubResource("Ability_dps_secondary_shatter")])
+
+[sub_resource type="Resource" id="Ability_dps_utility_descend"]
+resource_name = "Descinder Frxght"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Descinder Frxght"
+description = "Soar through the air, avoiding ground-based threats."
+cooldown = 8.0
+method = "use_dps_utility"
+variant_id = "descinder"
+
+[sub_resource type="Resource" id="Ability_dps_utility_shadow"]
+resource_name = "Shadowstep"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Shadowstep"
+description = "Slip into afterimage form, repositioning instantly."
+cooldown = 7.0
+method = "use_dps_utility_shadowstep"
+variant_id = "shadowstep"
+
+[sub_resource type="Resource" id="Slot_dps_utility"]
+resource_name = "DPS Utility"
+script = ExtResource("3")
+action_name = "ability_utility"
+slot_display_name = "Utility"
+description = "Mobility and escapes."
+abilities = Array[ExtResource("2")]([SubResource("Ability_dps_utility_descend"), SubResource("Ability_dps_utility_shadow")])
+
+[sub_resource type="Resource" id="Ability_dps_special_witch"]
+resource_name = "Wxtchmaker"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Wxtchmaker"
+description = "Channel unstable energy to unleash a devastating chaos blast."
+cooldown = 25.0
+method = "use_dps_special"
+variant_id = "witchmaker"
+
+[sub_resource type="Resource" id="Ability_dps_special_storm"]
+resource_name = "Storm Barrage"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Storm Barrage"
+description = "Trigger sustained fire that escalates in intensity."
+cooldown = 28.0
+method = "use_dps_special_storm_barrage"
+variant_id = "storm_barrage"
+
+[sub_resource type="Resource" id="Slot_dps_special"]
+resource_name = "DPS Special"
+script = ExtResource("3")
+action_name = "ability_special"
+slot_display_name = "Special"
+description = "Power ultimates."
+abilities = Array[ExtResource("2")]([SubResource("Ability_dps_special_witch"), SubResource("Ability_dps_special_storm")])
+
+[resource]
+script = ExtResource("1")
+id = "dps"
+display_name = "W//P"
+description = "Glass cannon that thrives on aggressive pacing and burst damage."
+passive_display_name = "Overdrive Loop"
+passive_description = "Maintains a volatile overclock that boosts damage output at the cost of stability."
+passive_method = "passive_dps_overdrive"
+max_health = 120.0
+move_speed_multiplier = 1.05
+ability_slots = Array[Resource]([SubResource("Slot_dps_primary"), SubResource("Slot_dps_secondary"), SubResource("Slot_dps_utility"), SubResource("Slot_dps_special")])

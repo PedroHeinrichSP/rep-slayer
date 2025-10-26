@@ -8,6 +8,8 @@
 # Sistema
 .DS_Store
 Thumbs.db
+.github/
+.vscode/
 # Build
 bin/
 export.cfg

@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="PlayerClassData" load_steps=16 format=3 uid="uid://c8m0c8s7cc10q"]
+
+[ext_resource type="Script" uid="uid://tt3wqxq7artd" path="res://scripts/player_class_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://ddg1j5b338s78" path="res://scripts/player_ability.gd" id="2"]
+[ext_resource type="Script" uid="uid://ihs53dw3ol2k" path="res://scripts/player_ability_slot.gd" id="3"]
+
+[sub_resource type="Resource" id="Ability_runner_primary_quick"]
+resource_name = "Quick Slash"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Quick Slash"
+description = "Deliver a rapid strike while gaining a burst of speed."
+cooldown = 2.0
+method = "use_runner_primary"
+variant_id = "quick_slash"
+
+[sub_resource type="Resource" id="Ability_runner_primary_blades"]
+resource_name = "Twin Blades"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Twin Blades"
+description = "Spin through enemies with dual blades, applying stacking bleed."
+cooldown = 3.0
+method = "use_runner_primary_twin_blades"
+variant_id = "twin_blades"
+
+[sub_resource type="Resource" id="Slot_runner_primary"]
+resource_name = "Runner Primary"
+script = ExtResource("3")
+action_name = "ability_primary"
+slot_display_name = "Primary"
+description = "Cutting attacks."
+abilities = Array[ExtResource("2")]([SubResource("Ability_runner_primary_quick"), SubResource("Ability_runner_primary_blades")])
+
+[sub_resource type="Resource" id="Ability_runner_secondary_sprint"]
+resource_name = "Sprint Burst"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Sprint Burst"
+description = "Explode forward with unmatched agility."
+cooldown = 8.0
+method = "use_runner_secondary"
+variant_id = "sprint_burst"
+
+[sub_resource type="Resource" id="Ability_runner_secondary_hookshot"]
+resource_name = "Hookshot"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Hookshot"
+description = "Fire a tether to yank yourself toward terrain or enemies."
+cooldown = 9.0
+method = "use_runner_secondary_hookshot"
+variant_id = "hookshot"
+
+[sub_resource type="Resource" id="Slot_runner_secondary"]
+resource_name = "Runner Secondary"
+script = ExtResource("3")
+action_name = "ability_secondary"
+slot_display_name = "Secondary"
+description = "Gap closing selections."
+abilities = Array[ExtResource("2")]([SubResource("Ability_runner_secondary_sprint"), SubResource("Ability_runner_secondary_hookshot")])
+
+[sub_resource type="Resource" id="Ability_runner_utility_phase"]
+resource_name = "Phase Dash"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Phase Dash"
+description = "Blink through hazards, conserving momentum."
+cooldown = 12.0
+method = "use_runner_utility"
+variant_id = "phase_dash"
+
+[sub_resource type="Resource" id="Ability_runner_utility_flip"]
+resource_name = "Sky Flip"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Sky Flip"
+description = "Flip overhead to gain height and reset fall momentum."
+cooldown = 11.0
+method = "use_runner_utility_sky_flip"
+variant_id = "sky_flip"
+
+[sub_resource type="Resource" id="Slot_runner_utility"]
+resource_name = "Runner Utility"
+script = ExtResource("3")
+action_name = "ability_utility"
+slot_display_name = "Utility"
+description = "Movement tricks."
+abilities = Array[ExtResource("2")]([SubResource("Ability_runner_utility_phase"), SubResource("Ability_runner_utility_flip")])
+
+[sub_resource type="Resource" id="Ability_runner_special_time"]
+resource_name = "Time Warp"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Time Warp"
+description = "Distort time to operate at peak velocity."
+cooldown = 30.0
+method = "use_runner_special"
+variant_id = "time_warp"
+
+[sub_resource type="Resource" id="Ability_runner_special_afterimage"]
+resource_name = "Afterimage Storm"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Afterimage Storm"
+description = "Unleash cascading afterimages that shred enemies in your path."
+cooldown = 32.0
+method = "use_runner_special_afterimage_storm"
+variant_id = "afterimage_storm"
+
+[sub_resource type="Resource" id="Slot_runner_special"]
+resource_name = "Runner Special"
+script = ExtResource("3")
+action_name = "ability_special"
+slot_display_name = "Special"
+description = "Temporal finishers."
+abilities = Array[ExtResource("2")]([SubResource("Ability_runner_special_time"), SubResource("Ability_runner_special_afterimage")])
+
+[resource]
+script = ExtResource("1")
+id = "runner"
+display_name = "Trailblazer"
+description = "Hit-and-run expert built around speed and evasive tools."
+passive_display_name = "Momentum Flow"
+passive_description = "Sustained movement grants stacking haste and evasion bonuses."
+passive_method = "passive_runner_momentum"
+max_health = 110.0
+move_speed_multiplier = 1.25
+ability_slots = Array[Resource]([SubResource("Slot_runner_primary"), SubResource("Slot_runner_secondary"), SubResource("Slot_runner_utility"), SubResource("Slot_runner_special")])

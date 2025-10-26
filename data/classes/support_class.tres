@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="PlayerClassData" load_steps=16 format=3 uid="uid://dkb6i4tjg6sst"]
+
+[ext_resource type="Script" uid="uid://tt3wqxq7artd" path="res://scripts/player_class_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://ddg1j5b338s78" path="res://scripts/player_ability.gd" id="2"]
+[ext_resource type="Script" uid="uid://ihs53dw3ol2k" path="res://scripts/player_ability_slot.gd" id="3"]
+
+[sub_resource type="Resource" id="Ability_support_primary_maraccas"]
+resource_name = "Throw Maraccas"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Throw Maraccas"
+description = "Lob restorative maraccas that heal allies and sting enemies."
+cooldown = 5.0
+method = "use_support_primary"
+variant_id = "throw_maraccas"
+
+[sub_resource type="Resource" id="Ability_support_primary_echo"]
+resource_name = "Harmonic Echo"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Harmonic Echo"
+description = "Release resonant pulses that bounce between squadmates for sustained healing."
+cooldown = 6.0
+method = "use_support_primary_harmonic_echo"
+variant_id = "harmonic_echo"
+
+[sub_resource type="Resource" id="Slot_support_primary"]
+resource_name = "Support Primary"
+script = ExtResource("3")
+action_name = "ability_primary"
+slot_display_name = "Primary"
+description = "Baseline sustain tools."
+abilities = Array[ExtResource("2")]([SubResource("Ability_support_primary_maraccas"), SubResource("Ability_support_primary_echo")])
+
+[sub_resource type="Resource" id="Ability_support_secondary_cleanse"]
+resource_name = "Cleanse Field"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Cleanse Field"
+description = "Purge debilitating effects and stabilize allies."
+cooldown = 15.0
+method = "use_support_secondary"
+variant_id = "cleanse_field"
+
+[sub_resource type="Resource" id="Ability_support_secondary_aegis"]
+resource_name = "Aegis Bloom"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Aegis Bloom"
+description = "Erect a blossoming shield that absorbs incoming damage before bursting into heals."
+cooldown = 18.0
+method = "use_support_secondary_aegis_bloom"
+variant_id = "aegis_bloom"
+
+[sub_resource type="Resource" id="Slot_support_secondary"]
+resource_name = "Support Secondary"
+script = ExtResource("3")
+action_name = "ability_secondary"
+slot_display_name = "Secondary"
+description = "Cleanse or shield utilities."
+abilities = Array[ExtResource("2")]([SubResource("Ability_support_secondary_cleanse"), SubResource("Ability_support_secondary_aegis")])
+
+[sub_resource type="Resource" id="Ability_support_utility_music"]
+resource_name = "Motivating Music"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Motivating Music"
+description = "Inspire allies with a surge of confidence and hustle."
+cooldown = 20.0
+method = "use_support_utility"
+variant_id = "motivating_music"
+
+[sub_resource type="Resource" id="Ability_support_utility_tether"]
+resource_name = "Safeguard Tether"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Safeguard Tether"
+description = "Link allies with a protective tether that redistributes harm."
+cooldown = 22.0
+method = "use_support_utility_safeguard_tether"
+variant_id = "safeguard_tether"
+
+[sub_resource type="Resource" id="Slot_support_utility"]
+resource_name = "Support Utility"
+script = ExtResource("3")
+action_name = "ability_utility"
+slot_display_name = "Utility"
+description = "Squad-wide enhancers."
+abilities = Array[ExtResource("2")]([SubResource("Ability_support_utility_music"), SubResource("Ability_support_utility_tether")])
+
+[sub_resource type="Resource" id="Ability_support_special_sanctuary"]
+resource_name = "Sanctuary"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Sanctuary"
+description = "Anchor a protective field that regenerates and shields over time."
+cooldown = 35.0
+method = "use_support_special"
+variant_id = "sanctuary"
+
+[sub_resource type="Resource" id="Ability_support_special_radiant"]
+resource_name = "Radiant Tome"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Radiant Tome"
+description = "Summon a floating tome that periodically heals allies and weakens foes."
+cooldown = 32.0
+method = "use_support_special_radiant_tome"
+variant_id = "radiant_tome"
+
+[sub_resource type="Resource" id="Slot_support_special"]
+resource_name = "Support Special"
+script = ExtResource("3")
+action_name = "ability_special"
+slot_display_name = "Special"
+description = "Anchored zone control."
+abilities = Array[ExtResource("2")]([SubResource("Ability_support_special_sanctuary"), SubResource("Ability_support_special_radiant")])
+
+[resource]
+script = ExtResource("1")
+id = "support"
+display_name = "The Fish"
+description = "Dedicated support that keeps the squad topped up and cleansed."
+passive_display_name = "Beacon of Hope"
+passive_description = "Projects a calming aura that slowly mends allies in range."
+passive_method = "passive_support_beacon"
+max_health = 140.0
+move_speed_multiplier = 0.95
+ability_slots = Array[Resource]([SubResource("Slot_support_primary"), SubResource("Slot_support_secondary"), SubResource("Slot_support_utility"), SubResource("Slot_support_special")])

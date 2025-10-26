@@ -1,0 +1,16 @@
+[gd_scene load_steps=8 format=3 uid="uid://blbojeee2l8fq"]
+
+[ext_resource type="Script" uid="uid://v6nwc0iyk3vj" path="res://scripts/player_roster.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dty0xduv8rdjd" path="res://scenes/characters/tank_character.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cd5uvqjdq0g5l" path="res://scenes/characters/dps_character.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bnrkoh3y2lgls" path="res://scenes/characters/support_character.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://c22j8h3m65o3u" path="res://scenes/characters/runner_character.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://dgh7hy5cschf1" path="res://scenes/characters/summoner_character.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bvqjg2rj0kj3y" path="res://scenes/debug_interface.tscn" id="7"]
+
+[node name="Character" type="Node3D"]
+script = ExtResource("1")
+character_scenes = Array[PackedScene]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6")])
+character_names = Array[String](["Tank", "DPS", "Support", "Runner", "Summoner"])
+
+[node name="DebugInterface" parent="." instance=ExtResource("7")]
