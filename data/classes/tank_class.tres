@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="PlayerClassData" load_steps=16 format=3 uid="uid://dtijohvhfyixt"]
+
+[ext_resource type="Script" uid="uid://tt3wqxq7artd" path="res://scripts/player_class_data.gd" id="1"]
+[ext_resource type="Script" uid="uid://ddg1j5b338s78" path="res://scripts/player_ability.gd" id="2"]
+[ext_resource type="Script" uid="uid://ihs53dw3ol2k" path="res://scripts/player_ability_slot.gd" id="3"]
+
+[sub_resource type="Resource" id="Ability_tank_primary_slam"]
+resource_name = "Hammer Slam"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Hammer Slam"
+description = "Swing your hammer to deal area damage and knockback."
+cooldown = 5.0
+method = "use_tank_primary"
+variant_id = "hammer_slam"
+
+[sub_resource type="Resource" id="Ability_tank_primary_bash"]
+resource_name = "Shield Bash"
+script = ExtResource("2")
+action_name = "ability_primary"
+display_name = "Shield Bash"
+description = "Drive forward with your shield, staggering enemies in front of you."
+cooldown = 6.0
+method = "use_tank_primary_shield_bash"
+variant_id = "shield_bash"
+
+[sub_resource type="Resource" id="Slot_tank_primary"]
+resource_name = "Tank Primary"
+script = ExtResource("3")
+action_name = "ability_primary"
+slot_display_name = "Primary"
+description = "Core frontline strikes."
+abilities = Array[ExtResource("2")]([SubResource("Ability_tank_primary_slam"), SubResource("Ability_tank_primary_bash")])
+
+[sub_resource type="Resource" id="Ability_tank_secondary_bastion"]
+resource_name = "Bastion Call"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Bastion Call"
+description = "Taunt nearby foes and gain resistance."
+cooldown = 12.0
+method = "use_tank_secondary"
+variant_id = "bastion_call"
+
+[sub_resource type="Resource" id="Ability_tank_secondary_rampart"]
+resource_name = "Rampart Surge"
+script = ExtResource("2")
+action_name = "ability_secondary"
+display_name = "Rampart Surge"
+description = "Project a cone of force that slows and weakens enemies."
+cooldown = 14.0
+method = "use_tank_secondary_rampart"
+variant_id = "rampart_surge"
+
+[sub_resource type="Resource" id="Slot_tank_secondary"]
+resource_name = "Tank Secondary"
+script = ExtResource("3")
+action_name = "ability_secondary"
+slot_display_name = "Secondary"
+description = "Control tools for managing aggro."
+abilities = Array[ExtResource("2")]([SubResource("Ability_tank_secondary_bastion"), SubResource("Ability_tank_secondary_rampart")])
+
+[sub_resource type="Resource" id="Ability_tank_utility_bulwark"]
+resource_name = "Bulwark"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Bulwark"
+description = "Raise a defensive barrier that creates cover for allies."
+cooldown = 20.0
+method = "use_tank_utility"
+variant_id = "bulwark"
+
+[sub_resource type="Resource" id="Ability_tank_utility_guardian"]
+resource_name = "Guardian March"
+script = ExtResource("2")
+action_name = "ability_utility"
+display_name = "Guardian March"
+description = "Advance with fortified steps, pushing enemies aside while shielding allies."
+cooldown = 18.0
+method = "use_tank_utility_guardian_march"
+variant_id = "guardian_march"
+
+[sub_resource type="Resource" id="Slot_tank_utility"]
+resource_name = "Tank Utility"
+script = ExtResource("3")
+action_name = "ability_utility"
+slot_display_name = "Utility"
+description = "Mitigation and formation support."
+abilities = Array[ExtResource("2")]([SubResource("Ability_tank_utility_bulwark"), SubResource("Ability_tank_utility_guardian")])
+
+[sub_resource type="Resource" id="Ability_tank_special_nova"]
+resource_name = "Guardian Nova"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Guardian Nova"
+description = "Emit a pulse that stabilizes allies and staggers enemies."
+cooldown = 35.0
+method = "use_tank_special"
+variant_id = "guardian_nova"
+
+[sub_resource type="Resource" id="Ability_tank_special_citadel"]
+resource_name = "Citadel Breaker"
+script = ExtResource("2")
+action_name = "ability_special"
+display_name = "Citadel Breaker"
+description = "Leap upward and crash down, creating a shockwave that launches foes."
+cooldown = 40.0
+method = "use_tank_special_citadel_breaker"
+variant_id = "citadel_breaker"
+
+[sub_resource type="Resource" id="Slot_tank_special"]
+resource_name = "Tank Special"
+script = ExtResource("3")
+action_name = "ability_special"
+slot_display_name = "Special"
+description = "Signature finishing moves."
+abilities = Array[ExtResource("2")]([SubResource("Ability_tank_special_nova"), SubResource("Ability_tank_special_citadel")])
+
+[resource]
+script = ExtResource("1")
+id = "tank"
+display_name = "Hammer of Justice"
+description = "Front-line stalwart focused on control and survivability."
+passive_display_name = "Stoneguard"
+passive_description = "Incoming blows reinforce your stance, granting steady damage resistance."
+passive_method = "passive_tank_stoneguard"
+max_health = 180.0
+move_speed_multiplier = 0.85
+ability_slots = Array[Resource]([SubResource("Slot_tank_primary"), SubResource("Slot_tank_secondary"), SubResource("Slot_tank_utility"), SubResource("Slot_tank_special")])
