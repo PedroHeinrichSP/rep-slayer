@@ -46,7 +46,7 @@ func use_runner_utility(_ability: PlayerAbility) -> void:
 	})
 
 func use_runner_utility_sky_flip(_ability: PlayerAbility) -> void:
-	velocity.y = max(velocity.y, _jump_initial_velocity())
+	velocity.y = max(velocity.y, jump_vel)
 	_add_effect("Sky Flip", 2.5, {
 		"notes": "Aerial pirouette"
 	})
