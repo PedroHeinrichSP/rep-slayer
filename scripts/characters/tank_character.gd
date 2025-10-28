@@ -15,7 +15,7 @@ func passive_tank_stoneguard() -> void:
 	})
 
 func use_tank_primary(_ability: PlayerAbility) -> void:
-	velocity.y = max(velocity.y, _jump_initial_velocity() * 0.6)
+	velocity.y = max(velocity.y, jump_vel * 0.6)
 	_add_effect("Fortified", 2.5, {
 		"speed_multiplier": 0.75,
 		"notes": "Bracing for impact"
@@ -58,7 +58,7 @@ func use_tank_special(_ability: PlayerAbility) -> void:
 	})
 
 func use_tank_special_citadel_breaker(_ability: PlayerAbility) -> void:
-	velocity.y = max(velocity.y, _jump_initial_velocity())
+	velocity.y = max(velocity.y, jump_vel)
 	_pulse_nearby_enemies(7.0, 11.0)
 	_add_effect("Citadel Breaker", 5.0, {
 		"notes": "Crashing slam"
